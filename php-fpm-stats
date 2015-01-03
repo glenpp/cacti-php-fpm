@@ -1,0 +1,22 @@
+#!/bin/sh
+
+STATUSURL=http://localhost/status
+
+
+data=`curl --silent $STATUSURL`
+
+dataline() {
+	echo "$data" | grep "^$1:" | sed "s/^$1: *//"
+}
+
+dataline 'accepted conn'
+dataline 'listen queue'
+dataline 'max listen queue'
+dataline 'listen queue len'
+dataline 'idle processes'
+dataline 'active processes'
+dataline 'total processes'
+dataline 'max active processes'
+dataline 'max children reached'
+dataline 'slow requests'
+
